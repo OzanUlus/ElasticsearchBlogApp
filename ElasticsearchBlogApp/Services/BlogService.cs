@@ -27,5 +27,9 @@ namespace ElasticsearchBlogApp.Services
             return isCreatedBlog != null;
         
         }
+        public async Task<List<Blog>> SearchAsync(string searchText) 
+        {
+         return await _blogRepository.SearchAsync(searchText);
+        }
     }
 }

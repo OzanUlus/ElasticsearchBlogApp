@@ -23,5 +23,20 @@ namespace ElasticsearchBlogApp.Repository
             
         
         }
+        public async Task<List<Blog>> SearchAsync(string searchText) 
+        {
+            //title --> full text
+            //content --> full text
+
+            var result = await _elasticsearchClient.SearchAsync<Blog>(s => s
+            .Index(indexName).Size(1000).Query(q => q
+            .Bool(b => b
+            .Should(
+                sh => sh.Match(m => m.Field(f => f.Content).Query(searchText)), 
+                sh => sh.MatchBoolPrefix(mb => mb.Field(f => f.Title).Query(searchText))))));
+
+            foreach (var hit in result.Hits) hit.Source.Id = hit.Id;
+            return result.Documents.ToList();
+        }
     }
 }
