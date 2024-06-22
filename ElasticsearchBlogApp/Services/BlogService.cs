@@ -19,7 +19,7 @@ namespace ElasticsearchBlogApp.Services
           {
               Title = model.Title,
               Content = model.Content,
-              UserId = new Guid(),
+              UserId = Guid.NewGuid(),
               Tags = model.Tags.Split(","),
               
           };
