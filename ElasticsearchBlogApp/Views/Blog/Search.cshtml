@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Search";
 }
-
+@model List<Blog>
 <h1>Search</h1>
 <div class="container">
     <div class="col-md-10 offset-md-1">
@@ -13,6 +13,41 @@
             </div>
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+
+        @if (!Model.Any()) 
+        {
+          <div class="alert-danger">NotFound Result</div>
+        }
+       else
+        {
+          <table class="table-active">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Title</th>
+                      <th>Content</th>
+                      <th>UserId</th>
+                      <th>Tags</th>
+                      <th>Creted</th>
+                  </tr>
+
+              </thead>
+              <tbody>
+                  @foreach(var blog in Model)
+                {
+                    <tr>
+                        <td>@blog.Id</td>
+                        <td>@blog.Title</td>
+                        <td>@blog.Content</td>
+                        <td>@blog.UserId</td>
+                        <td>@String.Join(",",blog.Tags)</td>
+                        <td>@blog.Created</td>
+                    </tr>
+                }
+              </tbody>
+          </table>
+        
+        }
 
     </div>
 </div>

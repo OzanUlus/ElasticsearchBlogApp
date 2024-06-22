@@ -1,4 +1,5 @@
 ﻿using Elastic.Clients.Elasticsearch;
+using Elastic.Clients.Elasticsearch.QueryDsl;
 using ElasticsearchBlogApp.Models;
 
 namespace ElasticsearchBlogApp.Repository
@@ -27,6 +28,8 @@ namespace ElasticsearchBlogApp.Repository
         {
             //title --> full text
             //content --> full text
+
+            
 
             var result = await _elasticsearchClient.SearchAsync<Blog>(s => s
             .Index(indexName).Size(1000).Query(q => q
