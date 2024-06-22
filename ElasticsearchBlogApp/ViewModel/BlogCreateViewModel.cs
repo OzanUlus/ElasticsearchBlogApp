@@ -10,9 +10,9 @@ namespace ElasticsearchBlogApp.ViewModel
         [Required]
 
         public string Content { get; set; } = null!;
-       
 
-        public List<string> Tags { get; set; } = new() ;
+
+        public string Tags { get; set; } = null!;
       
 
         
