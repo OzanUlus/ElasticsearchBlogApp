@@ -15,7 +15,7 @@ namespace ElasticsearchBlogApp.Repository
         }
 
         private const string indexName = "kibana_sample_data_ecommerce";
-        public async Task<(List<ECommerce> list ,long count)> SearchAsync(ECommerceViewModel eCommerceViewModel,int page,int pageSize) 
+        public async Task<(List<ECommerce> list ,long count)> SearchAsync(ECommerceSearchViewModel eCommerceViewModel,int page,int pageSize) 
         {
             List<Action<QueryDescriptor<ECommerce>>> listQuery = new();
 

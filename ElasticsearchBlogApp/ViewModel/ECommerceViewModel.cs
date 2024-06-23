@@ -1,20 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ElasticsearchBlogApp.Models;
+using System.Text.Json.Serialization;
 
 namespace ElasticsearchBlogApp.ViewModel
 {
     public class ECommerceViewModel
     {
-        [Display(Name ="Category")]
-        public string? Category { get; set; }
-        [Display(Name = "Gender")]
-        public string? Gender { get; set; }
-        [Display(Name = "Order Date (Start)")]
-        [DataType(DataType.Date)]
-        public DateTime? OrderDateStart { get; set; }
-        [Display(Name = "Order Date (End)")]
-        [DataType(DataType.Date)]
-        public DateTime? OrderDateEnd { get; set; }
-        [Display(Name = "Customer Full Name")]
-        public string? CustomerFullName { get; set; }
+       
+        public string Id { get; set; }
+        
+        public string CustomerFirstName { get; set; } = null!;
+     
+        public string CustomerLastName { get; set; } = null!;
+      
+        public string CustomerFullName { get; set; } = null!;
+  
+        public string Category { get; set; } = null!;
+    
+        public int OrderId { get; set; }
+    
+        public string OrderDate { get; set; }
+       
+        
+        public double TaxfulTotalPrice { get; set; }
+   
+        public string Gender { get; set; } = null!;
     }
 }
