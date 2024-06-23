@@ -19,21 +19,23 @@ namespace ElasticsearchBlogApp.Repository
         {
             List<Action<QueryDescriptor<ECommerce>>> listQuery = new();
 
-            if (!string.IsNullOrEmpty(eCommerceViewModel.Category)) 
+         
+
+            if (!string.IsNullOrEmpty(eCommerceViewModel?.Category)) 
             {
                 listQuery.Add(q => q
                 .Match(m => m
                 .Field(f => f.Category)
                 .Query(eCommerceViewModel.Category)));
             }
-            if (!string.IsNullOrEmpty(eCommerceViewModel.CustomerFullName))
+            if (!string.IsNullOrEmpty(eCommerceViewModel?.CustomerFullName))
             {
                 listQuery.Add(q => q
                 .Match(m => m
                 .Field(f => f.CustomerFullName)
                 .Query(eCommerceViewModel.CustomerFullName)));
             }
-            if (eCommerceViewModel.OrderDateStart.HasValue)
+            if (eCommerceViewModel?.OrderDateStart.HasValue == true)
             {
                 listQuery.Add(q => q
                 .Range(r => r
@@ -41,7 +43,7 @@ namespace ElasticsearchBlogApp.Repository
                 .Field(f => f.OrderDate)
                 .Gte(eCommerceViewModel.OrderDateStart.Value))));
             }
-            if (eCommerceViewModel.OrderDateEnd.HasValue)
+            if (eCommerceViewModel?.OrderDateEnd.HasValue == true)
             {
                 listQuery.Add(q => q
                 .Range(r => r
@@ -49,12 +51,9 @@ namespace ElasticsearchBlogApp.Repository
                 .Field(f => f.OrderDate)
                 .Lte(eCommerceViewModel.OrderDateEnd.Value))));
             }
-            if (string.IsNullOrEmpty(eCommerceViewModel.Gender)) 
+            if (string.IsNullOrEmpty(eCommerceViewModel?.Gender)) 
             {
-                listQuery.Add(q => q
-                .Term(t => t
-                .Field(f => f.Gender)
-                .Value(eCommerceViewModel.Gender)));
+                listQuery.Add(q => q.Term(t => t.Field(f => f.Gender).Value(eCommerceViewModel.Gender).CaseInsensitive()));
             }
 
             var pageFrom = (page - 1) * pageSize;
