@@ -67,12 +67,19 @@
 
             <nav>
                 <ul class="pagination">
-                    @for(int i = Model.StartPage(); i< Model.EndPage();i++)
-            {
-                <li class="page-item @(Model.Page==i?"active":"" )">
-                    <a class="page-link" href="@Model.CreatePageUrl(Context.Request,i,Model.PageSize)">@i</a>
-                </li>
-            }
+
+                    <li class="page-item @(Model.Page==1 )">
+                        <a class="page-link" href="@Model.CreatePageUrl(Context.Request,1,Model.PageSize)">First</a>
+                    </li>
+                    @for (int i = Model.StartPage(); i < Model.EndPage(); i++)
+                    {
+                        <li class="page-item @(Model.Page==i?"active":"" )">
+                            <a class="page-link" href="@Model.CreatePageUrl(Context.Request,i,Model.PageSize)">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.Page==Model.PageLinkCount)">
+                        <a class="page-link" href="@Model.CreatePageUrl(Context.Request,Model.PageLinkCount,Model.PageSize)">Last</a>
+                    </li>
                 </ul>
             </nav>
         </div>

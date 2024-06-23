@@ -18,7 +18,7 @@
             return Page + 6 >= PageLinkCount ? PageLinkCount : Page+6;
         }
 
-        public string CreatePageUrl(HttpRequest request,int page , int pageSize) 
+        public string CreatePageUrl(HttpRequest request,long page , int pageSize) 
         {
             var currentUrl = new Uri($"{request.Scheme}://{request.Host}{request.Path}{request.QueryString}").AbsoluteUri;
 
